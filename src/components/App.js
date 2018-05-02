@@ -5,9 +5,7 @@ import Footer from './common/Footer';
 const App = () => {
   return (
     <div>
-      <Header />
-      <h1>Welcome to My TDD Todolist</h1>
-      <Footer />
+      <h1>My App</h1>
     </div>
   )
 }
