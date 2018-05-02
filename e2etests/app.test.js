@@ -5,6 +5,16 @@ describe('Todolist', () => {
     browser.url('http://localhost:8081');
     const actualTitle = browser.getTitle();
 
-    expect(actualTitle).to.eql('React Redux');
+    expect(actualTitle).to.equal('React Redux');
+  })
+
+  it('should allow me to create a todo', () => {
+    browser.url('http://localhost:8081');
+    const newTodo = 'get better at testing';
+    browser.element('.todo-input').setValue(newTodo);
+    browser.click('.todo-submit');
+
+    const actual = browser.element('.todo-text').getText();
+    expect(actual).to.equal(newTodo);
   })
 })
