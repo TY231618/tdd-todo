@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/e2etests/"
+    ]
+  },
   "scripts": {
     "selenium-setup": "selenium-standalone install",
     "selenium-start": "selenium-standalone start",
