@@ -13,6 +13,7 @@ describe('App', () => {
       <App 
         state={initialState}
         submitTodo={mockFunction}
+        todos={[]}
       />
     );
     
