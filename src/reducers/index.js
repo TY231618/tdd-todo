@@ -7,9 +7,14 @@ export const initialState = {
 export const reducer = (state = initialState, action) => {
   switch(action.type) {
     case(types.SUBMIT_TODO):
-      return { 
+      return {
+        ...state,  
         todos: [
-          {id: 1, text: action.text}
+          ...state.todos,
+          {
+            id: action.id, 
+            text: action.text
+          }
         ]
       }
     default:
