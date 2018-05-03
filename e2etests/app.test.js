@@ -17,4 +17,15 @@ describe('Todolist', () => {
     const actual = browser.element('.todo-text').getText();
     expect(actual).to.equal(newTodo);
   })
+
+  it('should allow me to delete a todo', () => {
+    browser.url('http://localhost:8081');
+    const newTodo = 'get better at testing';
+    browser.element('.todo-input').setValue(newTodo);
+    browser.click('.todo-submit');
+    browser.click('.todo-delete');
+
+    const actual = browser.element('.todo-text');
+    expect(actual.state).to.equal('failure');
+  })
 })
