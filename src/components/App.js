@@ -7,12 +7,12 @@ import AddTodo from './addTodo/index';
 import actions from '../actions/index';
 import TodoList from '../components/todoList/index';
 
-export const App = ({submitTodo, todos}) => {
+export const App = ({submitTodo, todos, deleteTodo}) => {
   return (
     <div>
       <h1>My App</h1>
       <AddTodo submitTodo={submitTodo} />
-      <TodoList todos={todos}/>
+      <TodoList todos={todos} deleteTodo={deleteTodo}/>
     </div>
   )
 }
@@ -24,7 +24,8 @@ App.propTypes = {
       id: PropTypes.number.isRequired,
       text: PropTypes.string.isRequired
     }
-  ))
+  )).isRequired,
+  deleteTodo: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => {
@@ -36,6 +37,10 @@ const mapDispatchToProps = (dispatch) => ({
     if(text) {
       dispatch(actions.submitTodo(text));
     }
+  },
+
+  deleteTodo: (id) => {
+    dispatch(actions.deleteTodo(id));
   }
 })
 

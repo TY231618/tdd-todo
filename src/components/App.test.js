@@ -14,6 +14,7 @@ describe('App', () => {
         state={initialState}
         submitTodo={mockFunction}
         todos={[]}
+        deleteTodo={mockFunction}
       />
     );
     
