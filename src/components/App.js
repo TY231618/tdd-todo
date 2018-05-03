@@ -20,7 +20,9 @@ App.propTypes = {
 }
 
 const mapStateToProps = (state) => {
-  return state.todoListApp
+  return {
+    submitTodo: state.submitTodo
+  }
 }
 
 const mapDispatchToProps = (dispatch) => ({
