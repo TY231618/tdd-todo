@@ -14,6 +14,13 @@ const actions = {
       id: nextId(),
       text: todo
     }
+  },
+
+  deleteTodo(id) {
+    return {
+      type: types.DELETE_TODO,
+      id: id
+    }
   }
 }
 
