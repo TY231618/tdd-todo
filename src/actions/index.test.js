@@ -3,6 +3,7 @@ import types from '../constants/types';
 
 
 describe('Actions', () => {
+  
   const todoText = 'A todo';
 
   it('should create an action to add todo', () => {
