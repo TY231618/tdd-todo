@@ -4,29 +4,35 @@ import AddTodo from './index';
 import '../../../tools/testSetup';
 
 describe('AddTodo', () => {
+
+  let component;
+  const submitMock = jest.fn();
+
+  beforeEach(() => {
+    component = shallow(
+      <AddTodo submitTodo={submitMock} />
+    )
+  })
+
   it('should render successfully', () => {
-    const component = shallow(<AddTodo />);
     expect(component.exists()).toEqual(true);
   })
 
   it('should have one input', () => {
-    const component = shallow(<AddTodo />);
     expect(component.find('.todo-input').length).toEqual(1);
   })
 
   describe('AddTodo button', () => {
     it('should exist', () => {
-      const component = shallow(<AddTodo />);
       expect(component.find('.todo-submit').length).toEqual(1);
     })
 
     it('should call the submitTodo function when clicked', () => {
-      const submitTodoMock = jest.fn();
-      const component = mount(<AddTodo submitTodo={submitTodoMock} />);
+      component = mount(<AddTodo submitTodo={submitMock} />);
 
-      expect(submitTodoMock.mock.calls.length).toEqual(0);
+      expect(submitMock.mock.calls.length).toEqual(0);
       component.find('form').simulate('submit');
-      expect(submitTodoMock.mock.calls.length).toEqual(1);
+      expect(submitMock.mock.calls.length).toEqual(1);
     })
   })
 })

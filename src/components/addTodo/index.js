@@ -1,14 +1,35 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const AddTodo = () => {
+const AddTodo = ({ submitTodo }) => {
+
+  let input;
+
   return (
     <div>
-      <form>
-        <input type="text" className="todo-input" />
-        <button type="submit" className="todo-submit">AddTodo</button>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          submitTodo(input.value);
+          input.value = '';
+        }}
+      >
+        <input 
+          className="todo-input" 
+          ref={(element) => {
+            input = element;
+          }}
+        />
+        <button type="submit" className="todo-submit">
+          AddTodo
+        </button>
       </form>
     </div>
   )
+}
+
+AddTodo.propTypes = {
+  submitTodo: PropTypes.func.isRequired
 }
 
 export default AddTodo;
