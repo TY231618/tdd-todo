@@ -6,7 +6,7 @@ import Footer from './common/Footer';
 import AddTodo from './addTodo/index';
 import actions from '../actions/index';
 import TodoList from '../components/todoList/index';
-// import Quote from '../components/getQuote/index';
+import Quote from '../components/getQuote/index';
 
 export const App = ({submitTodo, todos, deleteTodo}) => {
   return (
@@ -14,6 +14,7 @@ export const App = ({submitTodo, todos, deleteTodo}) => {
       <h1>My App</h1>
       <AddTodo submitTodo={submitTodo} />
       <TodoList todos={todos} deleteTodo={deleteTodo} />
+      <Quote getQuote={() => {}} />
     </div>
   )
 }
