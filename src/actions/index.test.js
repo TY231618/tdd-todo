@@ -6,6 +6,8 @@ describe('Actions', () => {
   
   const todoText = 'A todo';
 
+  const quoteData = {};
+
   it('should create an action to add todo', () => {
     const expectedAction = {
       type: types.SUBMIT_TODO,
@@ -23,5 +25,14 @@ describe('Actions', () => {
     }
 
     expect(actions.deleteTodo(1)).toEqual(expectedAction);
+  })
+
+  it('should create an action to retrieve a quote', () => {
+    const expectedAction = {
+      type: types.GET_QUOTE,
+      payload: quoteData
+    }
+
+    expect(actions.getQuote()).toEqual(expectedAction);
   })
 })
