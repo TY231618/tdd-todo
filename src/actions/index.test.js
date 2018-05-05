@@ -1,6 +1,7 @@
 import actions from './index';
 import types from '../constants/types';
-
+import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
 
 describe('Actions', () => {
   
@@ -27,12 +28,20 @@ describe('Actions', () => {
     expect(actions.deleteTodo(1)).toEqual(expectedAction);
   })
 
-  it('should create an action to retrieve a quote', () => {
+  it('should create an action to retrieve a quote', (done) => {
+    const mock = new MockAdapter(axios);
     const expectedAction = {
       type: types.GET_QUOTE,
       payload: quoteData
     }
+    mock.onGet('http://quotes.rest/qod.json').reply(200, expectedAction);
 
-    expect(actions.getQuote()).toEqual(expectedAction);
+    // actions.getQuote().then(res => {
+    //   expect(res).toEqual(expectedAction);
+    //   done();
+    // })
+
+    expect(actions.getQuote()).toEqual(expectedAction)
+    done()
   })
 })

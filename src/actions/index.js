@@ -1,10 +1,18 @@
 import types from '../constants/types';
+import axios from 'axios';
 
 let todoId = 0;
 
 const nextId = () => {
   todoId += 1;
   return todoId
+}
+
+const getQuoteSuccess = quote => {
+  return {
+    type: types.GET_QUOTE,
+    quote: quote
+  }
 }
 
 const actions = {
@@ -21,6 +29,17 @@ const actions = {
       type: types.DELETE_TODO,
       id: id
     }
+  },
+
+  getQuote() {
+    const result = axios.get('http://quotes.rest/qod.json')
+      .then(res => {
+        const data = res.data;
+        return getQuoteSuccess(data)
+      })
+      .catch(err => {
+        throw Error(err);
+      });
   }
 }
 
