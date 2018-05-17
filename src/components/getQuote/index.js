@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Quote = ({getQuote}) => {
+const Quote = ({getQuote, quote}) => {
   return (
     <div>
       <h1>Quote of the day</h1>
@@ -12,6 +12,7 @@ const Quote = ({getQuote}) => {
       >
         Get Quote
       </button>
+      <div>{quote}</div>
     </div>
   )
 }

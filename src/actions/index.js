@@ -32,6 +32,7 @@ const actions = {
   },
 
   getQuoteSuccess(quote) {
+    console.log('inside success =====> ', quote)
     return {
       type: types.GET_QUOTE,
       quote: quote
@@ -42,9 +43,10 @@ const actions = {
     return dispatch => {
       return axios.get('http://quotes.rest/qod.json')
         .then(res => {
-          const data = res.data;
-          console.log('then res', res.data);
-          return dispatch(this.getQuoteSuccess(data))
+          const quoteResult = res.data.contents.quotes[0].quote;
+
+          console.log('then quoteResult =======> ', quoteResult);
+          return dispatch(this.getQuoteSuccess(quoteResult))
         })
         .catch(err => {
           throw new Error(err)

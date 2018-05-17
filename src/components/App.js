@@ -8,13 +8,13 @@ import actions from '../actions/index';
 import TodoList from '../components/todoList/index';
 import Quote from '../components/getQuote/index';
 
-export const App = ({submitTodo, todos, deleteTodo, getQuote}) => {
+export const App = ({submitTodo, todos, deleteTodo, getQuote, quote}) => {
   return (
     <div>
       <h1>My App</h1>
       <AddTodo submitTodo={submitTodo} />
       <TodoList todos={todos} deleteTodo={deleteTodo} />
-      <Quote getQuote={getQuote} />
+      <Quote getQuote={getQuote} quote={quote}/>
     </div>
   )
 }
@@ -28,7 +28,8 @@ App.propTypes = {
     }
   )).isRequired,
   deleteTodo: PropTypes.func.isRequired,
-  getQuote: PropTypes.func.isRequired
+  getQuote: PropTypes.func.isRequired,
+  quote: PropTypes.string.isRequired
 }
 
 const mapStateToProps = (state) => {
