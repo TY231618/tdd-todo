@@ -15,6 +15,7 @@ describe('App', () => {
         submitTodo={mockFunction}
         todos={[]}
         deleteTodo={mockFunction}
+        getQuote={mockFunction}
       />
     );
     

@@ -8,12 +8,12 @@ const nextId = () => {
   return todoId
 }
 
-const getQuoteSuccess = quote => {
-  return {
-    type: types.GET_QUOTE,
-    quote: quote
-  }
-}
+// const getQuoteSuccess = quote => {
+//   return {
+//     type: types.GET_QUOTE,
+//     quote: quote
+//   }
+// }
 
 const actions = {
   submitTodo(todo) {
@@ -31,15 +31,25 @@ const actions = {
     }
   },
 
+  getQuoteSuccess(quote) {
+    return {
+      type: types.GET_QUOTE,
+      quote: quote
+    }
+  },
+
   getQuote() {
-    const result = axios.get('http://quotes.rest/qod.json')
-      .then(res => {
-        const data = res.data;
-        return getQuoteSuccess(data)
-      })
-      .catch(err => {
-        throw Error(err);
-      });
+    return dispatch => {
+      return axios.get('http://quotes.rest/qod.json')
+        .then(res => {
+          const data = res.data;
+          console.log('then res', res.data);
+          return dispatch(this.getQuoteSuccess(data))
+        })
+        .catch(err => {
+          throw new Error(err)
+        })
+    }
   }
 }
 

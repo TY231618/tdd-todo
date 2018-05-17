@@ -8,7 +8,7 @@ const Quote = ({getQuote}) => {
       <button
         type="button"
         className="quote-submit"
-        onClick={() => getQuote()}
+        onClick={getQuote}
       >
         Get Quote
       </button>

@@ -1,7 +1,8 @@
 import types from '../constants/types';
 
 export const initialState = {
-  todos: []
+  todos: [],
+  quote: ''
 };
 
 export const reducer = (state = initialState, action) => {
@@ -25,6 +26,12 @@ export const reducer = (state = initialState, action) => {
         todos: [
           ...state.todos.filter(todo => todo.id != action.id)
         ]
+      }
+    
+    case types.GET_QUOTE:
+      return {
+        ...state,
+        quote: action.quote
       }
 
     default:

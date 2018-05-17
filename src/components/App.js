@@ -8,13 +8,13 @@ import actions from '../actions/index';
 import TodoList from '../components/todoList/index';
 import Quote from '../components/getQuote/index';
 
-export const App = ({submitTodo, todos, deleteTodo}) => {
+export const App = ({submitTodo, todos, deleteTodo, getQuote}) => {
   return (
     <div>
       <h1>My App</h1>
       <AddTodo submitTodo={submitTodo} />
       <TodoList todos={todos} deleteTodo={deleteTodo} />
-      <Quote getQuote={() => {}} />
+      <Quote getQuote={getQuote} />
     </div>
   )
 }
@@ -27,7 +27,8 @@ App.propTypes = {
       text: PropTypes.string.isRequired
     }
   )).isRequired,
-  deleteTodo: PropTypes.func.isRequired
+  deleteTodo: PropTypes.func.isRequired,
+  getQuote: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => {
@@ -43,6 +44,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   deleteTodo: (id) => {
     dispatch(actions.deleteTodo(id));
+  },
+
+  getQuote: () => {
+    dispatch(actions.getQuote());
   }
 })
 

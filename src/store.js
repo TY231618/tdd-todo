@@ -4,8 +4,12 @@ import todoListApp from './reducers/index';
 
 const middleware = applyMiddleware(thunk);
 
+const composeMiddleware = compose(middleware, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
 const reducers = combineReducers({
   todoListApp
 })
 
-export default createStore(reducers, compose(middleware, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
+export default createStore(reducers, composeMiddleware);
+
+// export default createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());

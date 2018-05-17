@@ -2,6 +2,7 @@ import actions from './index';
 import types from '../constants/types';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
+import configureMockStore from 'redux-mock-store';
 
 describe('Actions', () => {
   
@@ -28,20 +29,22 @@ describe('Actions', () => {
     expect(actions.deleteTodo(1)).toEqual(expectedAction);
   })
 
-  it('should create an action to retrieve a quote', (done) => {
+  it('should create an action to retrieve a quote', async () => {
     const mock = new MockAdapter(axios);
+ 
+    const quote = 'someQuote';
+
+    mock.onGet('/quote').reply(200, {
+      quote: quote
+    });
+
     const expectedAction = {
       type: types.GET_QUOTE,
-      payload: quoteData
+      quote: quote
     }
-    mock.onGet('http://quotes.rest/qod.json').reply(200, expectedAction);
 
-    // return actions.getQuote().then(res => {
-    //   expect(res).toEqual(expectedAction);
-    //   done();
-    // })
-
-    // expect(actions.getQuote()).toEqual(expectedAction)
-    // done()
+    const res = await axios.get('/quote');
+    expect(actions.getQuoteSuccess(quote)).toEqual(expectedAction)
+    mock.restore();
   })
 })
