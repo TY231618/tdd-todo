@@ -2,7 +2,8 @@ import types from '../constants/types';
 
 export const initialState = {
   todos: [],
-  quote: ''
+  quote: {},
+  image: ''
 };
 
 export const reducer = (state = initialState, action) => {
@@ -32,6 +33,12 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         quote: action.quote
+      }
+    
+    case types.FETCH_PUPPY:
+      return {
+        ...state, 
+        image: action.image
       }
 
     default:

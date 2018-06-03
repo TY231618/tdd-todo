@@ -8,13 +8,6 @@ const nextId = () => {
   return todoId
 }
 
-// const getQuoteSuccess = quote => {
-//   return {
-//     type: types.GET_QUOTE,
-//     quote: quote
-//   }
-// }
-
 const actions = {
   submitTodo(todo) {
     return {
@@ -32,7 +25,6 @@ const actions = {
   },
 
   getQuoteSuccess(quote) {
-    console.log('inside success =====> ', quote)
     return {
       type: types.GET_QUOTE,
       quote: quote
@@ -43,14 +35,33 @@ const actions = {
     return dispatch => {
       return axios.get('http://quotes.rest/qod.json')
         .then(res => {
-          const quoteResult = res.data.contents.quotes[0].quote;
+          const quoteResult = res.data.contents.quotes[0];
 
-          console.log('then quoteResult =======> ', quoteResult);
           return dispatch(this.getQuoteSuccess(quoteResult))
         })
         .catch(err => {
           throw new Error(err)
         })
+    }
+  },
+
+  getImageSuccess(image) {
+    return {
+      type: types.FETCH_PUPPY,
+      image: image
+    }
+  },
+
+  fetchPuppy() {
+    return dispatch => {
+      return axios.get('https://dog.ceo/api/breeds/image/random')
+      .then(res => {
+        const image = res.data.message
+        return dispatch(this.getImageSuccess(image));
+      })
+      .catch(err => {
+        throw new Error('fuck:', err)
+      })
     }
   }
 }

@@ -29,22 +29,48 @@ describe('Actions', () => {
     expect(actions.deleteTodo(1)).toEqual(expectedAction);
   })
 
-  it('should create an action to retrieve a quote', async () => {
-    const mock = new MockAdapter(axios);
- 
-    const quote = 'someQuote';
+  describe('getQuote action', () => {
 
-    mock.onGet('/quote').reply(200, {
-      quote: quote
-    });
+    it('should create an action to retrieve a quote', () => {
+      const mock = new MockAdapter(axios);
+   
+      const quote = {
+        quote: 'someQuote'
+      }
+  
+      mock.onGet('/quote').reply(200, {
+        quote: quote
+      });
+  
+      const expectedAction = {
+        type: types.GET_QUOTE,
+        quote: quote
+      }
+  
+      axios.get('/quote').then(() => {
+        expect(actions.getQuoteSuccess(quote)).toEqual(expectedAction)
+      })
+    })
+  })
 
-    const expectedAction = {
-      type: types.GET_QUOTE,
-      quote: quote
-    }
+  describe('getPuppy action', () => {
+    it('should create an action to retrieve a puppy', () => {
+      const mock = new MockAdapter(axios);
 
-    const res = await axios.get('/quote');
-    expect(actions.getQuoteSuccess(quote)).toEqual(expectedAction)
-    mock.restore();
+      const image = ''
+
+      mock.onGet('/puppy').reply(200, {
+        image: image
+      })
+
+      const expectedAction = {
+        type: types.FETCH_PUPPY,
+        image: image
+      }
+
+      return axios.get('/puppy').then(() => {
+        expect(actions.getImageSuccess(image)).toEqual(expectedAction)
+      })
+    })
   })
 })

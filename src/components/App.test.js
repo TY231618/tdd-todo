@@ -16,6 +16,9 @@ describe('App', () => {
         todos={[]}
         deleteTodo={mockFunction}
         getQuote={mockFunction}
+        quote={{}}
+        getPuppyPic={mockFunction}
+        puppyImageUrl={''}
       />
     );
     

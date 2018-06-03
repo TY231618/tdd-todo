@@ -7,14 +7,16 @@ import AddTodo from './addTodo/index';
 import actions from '../actions/index';
 import TodoList from '../components/todoList/index';
 import Quote from '../components/getQuote/index';
+import Puppy from '../components/puppy/index';
 
-export const App = ({submitTodo, todos, deleteTodo, getQuote, quote}) => {
+export const App = ({submitTodo, todos, deleteTodo, getQuote, quote, getPuppyPic, image}) => {
   return (
     <div>
       <h1>My App</h1>
       <AddTodo submitTodo={submitTodo} />
       <TodoList todos={todos} deleteTodo={deleteTodo} />
-      <Quote getQuote={getQuote} quote={quote}/>
+      <Quote getQuote={getQuote} quote={quote} />
+      <Puppy getPuppyPic={getPuppyPic} image={image} />
     </div>
   )
 }
@@ -29,7 +31,9 @@ App.propTypes = {
   )).isRequired,
   deleteTodo: PropTypes.func.isRequired,
   getQuote: PropTypes.func.isRequired,
-  quote: PropTypes.string.isRequired
+  quote: PropTypes.object.isRequired,
+  getPuppyPic: PropTypes.func.isRequired,
+  image: PropTypes.string.isRequired
 }
 
 const mapStateToProps = (state) => {
@@ -49,6 +53,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   getQuote: () => {
     dispatch(actions.getQuote());
+  },
+
+  getPuppyPic: () => {
+    dispatch(actions.fetchPuppy());
   }
 })
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 const Quote = ({getQuote, quote}) => {
   return (
@@ -12,7 +11,8 @@ const Quote = ({getQuote, quote}) => {
       >
         Get Quote
       </button>
-      <div>{quote}</div>
+      <div>{quote.quote}</div>
+      <div>{quote.author}</div>
     </div>
   )
 }

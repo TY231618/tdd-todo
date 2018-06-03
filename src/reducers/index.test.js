@@ -22,7 +22,8 @@ describe('Reducer', () => {
         todos: [
           {id: 1, text: todoText}
         ],
-        quote: ''
+        quote: {},
+        image: ''
       };
 
       expect(reducer(undefined, action)).toEqual(expectedState);
@@ -58,17 +59,40 @@ describe('Reducer', () => {
     it('should return the correct state after being called', () => {
       const startingState = {
         todos: [],
-        quote: ''
+        quote: {}
       }
 
       const action = {
         type: types.GET_QUOTE,
-        quote: 'I am a quote'
+        quote: {quote: 'I am a quote'}
       }
 
       const expectedState = {
         todos: [],
-        quote: 'I am a quote'
+        quote: {quote: 'I am a quote'}
+      }
+
+      expect(reducer(startingState, action)).toEqual(expectedState);
+    })
+  })
+
+  describe('getImage', () => {
+    it('should return the correct state after being called', () => {
+      const startingState = {
+        todos: [],
+        quote: {},
+        image: ''
+      }
+
+      const action = {
+        type: types.FETCH_PUPPY,
+        image: 'some image url'
+      }
+
+      const expectedState = {
+        todos: [],
+        quote: {},
+        image: 'some image url'
       }
 
       expect(reducer(startingState, action)).toEqual(expectedState);
